@@ -9,4 +9,3 @@ Scenario: Current time must be returned to match Berlin clock display
   Then the returned data must match:
     | Second | 5Hour | 1Hour | 5Minute | 1Minute |
     | 0      | 0     | 0     | 0       | 0       |
-  
