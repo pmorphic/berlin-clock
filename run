@@ -1,0 +1,5 @@
+#!/bin/bash
+set -eu
+# This script starts the application for use in cucumber tests.
+
+exec mvn spring-boot:run -Drun.jvmArguments="-Drun.mode=component-test"
