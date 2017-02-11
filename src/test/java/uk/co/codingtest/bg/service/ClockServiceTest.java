@@ -22,6 +22,16 @@ public class ClockServiceTest {
     }
 
     @Test (expected = InvalidParameterException.class)
+    public void itShouldThrowForInvalidTime() throws InvalidParameterException {
+        underTest.getDisplay("abc");
+    }
+
+    @Test (expected = InvalidParameterException.class)
+    public void itShouldThrowForInvalidTimeFormat() throws InvalidParameterException {
+        underTest.getDisplay("10:10:10.1000Z");
+    }
+
+    @Test (expected = InvalidParameterException.class)
     public void itShouldThrowForInvalidHour() throws InvalidParameterException {
         underTest.getDisplay("24:10:10");
     }

@@ -26,7 +26,7 @@ public class ClockControllerTest {
     }
 
     @Test
-    public void itShouldUseValidTimePassedIn() throws Exception {
+    public void itShouldUseTimePassedIn() throws Exception {
         String time = "00:00:01";
         ClockDisplay expected = new ClockDisplay();
         when(clockService.getDisplay(time)).thenReturn(expected);
@@ -34,20 +34,6 @@ public class ClockControllerTest {
         ClockDisplay actual = underTest.displayTime(time);
 
         assertEquals(actual, expected);
-    }
-
-    @Test
-    public void itShouldThrowIfInvalidTimePassedIn() {
-        String time = "abc";
-
-        try {
-            underTest.displayTime(time);
-            fail("Should throw exception");
-        } catch (InvalidParameterException e) {
-
-        }
-
-        verifyZeroInteractions(clockService);
     }
 
 }

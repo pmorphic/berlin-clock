@@ -22,17 +22,7 @@ public class ClockController {
 
     @RequestMapping(value = "/display-time")
     public ClockDisplay displayTime(@RequestParam("time")  String time) throws InvalidParameterException {
-        validate(time);
         return clockService.getDisplay(time);
-    }
-
-    private void validate(String time) throws InvalidParameterException {
-        String regex = "^(\\d){1,2}:(\\d){1,2}:(\\d){1,2}$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(time);
-        if (!matcher.matches()) {
-            throw new InvalidParameterException();
-        }
     }
 
 }
