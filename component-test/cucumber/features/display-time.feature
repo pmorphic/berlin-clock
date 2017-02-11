@@ -7,5 +7,5 @@ Scenario: Current time must be returned to match Berlin clock display
   Given I initialize the current time to be "00:00:01" hrs
   When I make a request to get time display
   Then the returned data must match:
-    | Second | 5Hour | 1Hour | 5Minute | 1Minute |
-    | 0      | 0     | 0     | 0       | 0       |
+    | seconds | 5Hour | 1Hour | 5Minute | 1Minute |
+    | 0       | 0     | 0     | 0       | 0       |

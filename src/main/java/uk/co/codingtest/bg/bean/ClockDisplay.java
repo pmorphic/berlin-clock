@@ -1,13 +1,15 @@
 package uk.co.codingtest.bg.bean;
 
+import uk.co.codingtest.bg.enums.SecondsDisplay;
+
 public class ClockDisplay {
-    private int seconds;
+    private SecondsDisplay secondsDisplay = SecondsDisplay.OFF;
 
     public int getSeconds() {
-        return seconds;
+        return secondsDisplay.getValue();
     }
 
-    public void setSeconds(int seconds) {
-        this.seconds = seconds;
+    public void setSecondsDisplay(SecondsDisplay secondsDisplay) {
+        this.secondsDisplay = secondsDisplay;
     }
 }
