@@ -1,5 +1,8 @@
 package uk.co.codingtest.bg.enums;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum FiveHourDisplay {
     ZERO(0),
     FIVE(1),
@@ -15,5 +18,9 @@ public enum FiveHourDisplay {
 
     public int getDisplayState() {
         return displayState;
+    }
+
+    public static FiveHourDisplay fromDisplayState(int i) {
+        return Arrays.stream(FiveHourDisplay.values()).filter(e -> e.getDisplayState() == i).findAny().get();
     }
 }

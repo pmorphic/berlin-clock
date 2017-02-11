@@ -11,6 +11,7 @@ public class DisplayEngine {
     }
 
     public FiveHourDisplay get5HourDisplay(int hh24) {
-        return FiveHourDisplay.ZERO;
+        return FiveHourDisplay.fromDisplayState(hh24/5);
     }
+
 }
