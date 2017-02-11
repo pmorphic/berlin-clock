@@ -2,23 +2,34 @@ package uk.co.codingtest.bg.service;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 import uk.co.codingtest.bg.bean.ClockDisplay;
+import uk.co.codingtest.bg.enums.SecondsDisplay;
 import uk.co.codingtest.bg.exception.InvalidParameterException;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ClockServiceTest {
     private ClockService underTest;
+    @Mock
+    private DisplayEngine displayEngine;
 
     @Before
     public void setUp() throws Exception {
-        underTest = new ClockService();
+        underTest = new ClockService(displayEngine);
     }
 
     @Test
     public void itShouldReturnClockDisplayForValidTimeInput() throws InvalidParameterException {
+        when(displayEngine.getSecondsDisplay(11)).thenReturn(SecondsDisplay.ON);
+
         ClockDisplay actual = underTest.getDisplay("11:11:11");
-        assertNotNull(actual);
+        assertEquals(SecondsDisplay.ON.getDisplayState(), actual.getSecondsDisplayState());
     }
 
     @Test (expected = InvalidParameterException.class)

@@ -1,5 +1,6 @@
 package uk.co.codingtest.bg.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.co.codingtest.bg.bean.ClockDisplay;
 import uk.co.codingtest.bg.exception.InvalidParameterException;
@@ -10,6 +11,13 @@ import java.util.regex.Pattern;
 @Service
 public class ClockService {
 
+    private final DisplayEngine displayEngine;
+
+    @Autowired
+    public ClockService(DisplayEngine displayEngine) {
+        this.displayEngine = displayEngine;
+    }
+
     public ClockDisplay getDisplay(String time) throws InvalidParameterException {
         validatePattern(time);
         String[] stringSplit = time.split(":");
@@ -17,7 +25,9 @@ public class ClockService {
         int mi = validateAndToInt(stringSplit[1], 59);
         int ss = validateAndToInt(stringSplit[2], 59);
 
-        return new ClockDisplay();
+        ClockDisplay clockDisplay = new ClockDisplay();
+        clockDisplay.setSecondsDisplay(displayEngine.getSecondsDisplay(ss));
+        return clockDisplay;
     }
 
     private void validatePattern(String time) throws InvalidParameterException {
