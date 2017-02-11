@@ -2,6 +2,7 @@ package uk.co.codingtest.bg.controller;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +35,19 @@ public class ClockControllerIntegrationTest {
     }
 
     @Test
-    public void itShouldUseTimePassedIn() throws Exception {
+    public void itShouldUseValidTimePassedIn() throws Exception {
         mockMvc.perform(get("/display-time")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("time", "00:00:01")
         ).andExpect(status().isOk());
+    }
+
+    @Test
+    public void itShouldReturnBadRequestForInvalidTimeParam() throws Exception {
+        mockMvc.perform(get("/display-time")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("time", "ee:00:dd")
+        ).andExpect(status().isBadRequest());
     }
 
     @After
