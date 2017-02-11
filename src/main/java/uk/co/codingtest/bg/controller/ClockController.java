@@ -27,8 +27,8 @@ public class ClockController {
     }
 
     private void validate(String time) throws InvalidParameterException {
-        String p = "^(\\d){1,2}:(\\d){1,2}:(\\d){1,2}$";
-        Pattern pattern = Pattern.compile(p);
+        String regex = "^(\\d){1,2}:(\\d){1,2}:(\\d){1,2}$";
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(time);
         if (!matcher.matches()) {
             throw new InvalidParameterException();

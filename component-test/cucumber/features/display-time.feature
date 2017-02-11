@@ -15,3 +15,11 @@ Feature: Checks if the current time is represented similar to The Berlin Clock.
     When I make a request to get time display
     Then the system must return "400" status code
 
+  @wip
+  Scenario: Current time must be returned to match Berlin clock display
+    Given I initialize the current time to be "00:00:02" hrs
+    When I make a request to get time display
+    Then the system must return "200" status code
+    And the returned data must match:
+      | secondsDisplayState | 5HourDisplayState | 1HourDisplayState | 5MinuteDisplayState | 1MinuteDisplayState |
+      | 1                   | 0                 | 0                 | 0                   | 0                   |
