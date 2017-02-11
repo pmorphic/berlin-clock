@@ -6,6 +6,6 @@ import uk.co.codingtest.bg.enums.SecondsDisplay;
 @Service
 public class DisplayEngine {
     public SecondsDisplay getSecondsDisplay(int seconds) {
-        return SecondsDisplay.OFF;
+        return (seconds % 2 == 0) ? SecondsDisplay.ON : SecondsDisplay.OFF;
     }
 }
