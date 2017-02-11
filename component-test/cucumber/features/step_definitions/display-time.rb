@@ -10,15 +10,16 @@ When /^I make a request to get time display$/ do
   url = "#{BASE_URL}/display-time"
   response = RestClient.get url, {params: {time: @current_time}}
   @response_body = JSON.parse(response.body)
+  puts @response_body
 end
 
 Then /^the returned data must match:$/ do |table|
   table.hashes.each do |row|
-    expect(@response_body["seconds"]).to eq(row["seconds"].to_i)
-    expect(@response_body["5Hour"]).to eq(row["5Hour"].to_i)
-    expect(@response_body["1Hour"]).to eq(row["1Hour"].to_i)
-    expect(@response_body["5Minute"]).to eq(row["5Minute"].to_i)
-    expect(@response_body["1Minute"]).to eq(row["1Minute"].to_i)
+    expect(@response_body["secondsDisplayState"]).to eq(row["secondsDisplayState"].to_i)
+    expect(@response_body["5HourDisplayState"]).to eq(row["5HourDisplayState"].to_i)
+    expect(@response_body["1HourDisplayState"]).to eq(row["1HourDisplayState"].to_i)
+    expect(@response_body["5MinuteDisplayState"]).to eq(row["5MinuteDisplayState"].to_i)
+    expect(@response_body["1MinuteDisplayState"]).to eq(row["1MinuteDisplayState"].to_i)
   end
 
 end
