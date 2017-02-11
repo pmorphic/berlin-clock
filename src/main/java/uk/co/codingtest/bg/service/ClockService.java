@@ -9,8 +9,21 @@ import java.util.regex.Pattern;
 
 @Service
 public class ClockService {
+
     public ClockDisplay getDisplay(String time) throws InvalidParameterException {
+        String[] stringSplit = time.split(":");
+        int hh24 = validateAndToInt(stringSplit[0], 23);
+        int mi = validateAndToInt(stringSplit[1], 59);
+        int ss = validateAndToInt(stringSplit[2], 59);
         return new ClockDisplay();
+    }
+
+    private int validateAndToInt(String value, int maxValue) throws InvalidParameterException {
+        int i = Integer.valueOf(value);
+        if (i > maxValue) {
+            throw new InvalidParameterException();
+        }
+        return i;
     }
 
 }

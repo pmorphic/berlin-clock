@@ -21,4 +21,19 @@ public class ClockServiceTest {
         assertNotNull(actual);
     }
 
+    @Test (expected = InvalidParameterException.class)
+    public void itShouldThrowForInvalidHour() throws InvalidParameterException {
+        underTest.getDisplay("24:10:10");
+    }
+
+    @Test (expected = InvalidParameterException.class)
+    public void itShouldThrowForInvalidMinute() throws InvalidParameterException {
+        underTest.getDisplay("23:60:10");
+    }
+
+    @Test (expected = InvalidParameterException.class)
+    public void itShouldThrowForInvalidSecond() throws InvalidParameterException {
+        underTest.getDisplay("02:10:60");
+    }
+
 }
