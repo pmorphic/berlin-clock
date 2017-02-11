@@ -2,6 +2,7 @@ package uk.co.codingtest.bg.bean;
 
 import org.junit.Before;
 import org.junit.Test;
+import uk.co.codingtest.bg.enums.FiveHourDisplay;
 import uk.co.codingtest.bg.enums.SecondsDisplay;
 
 import static org.junit.Assert.*;
@@ -31,6 +32,15 @@ public class ClockDisplayTest {
 
         underTest.setSecondsDisplay(SecondsDisplay.ON);
         assertEquals(1, underTest.getSecondsDisplayState());
+    }
+
+    @Test
+    public void itShouldReturnCorrect5HourValue() {
+        underTest.set5HourDisplay(FiveHourDisplay.FIFTEEN);
+        assertEquals(3, underTest.get5HourDisplayState());
+
+        underTest.set5HourDisplay(FiveHourDisplay.FIVE);
+        assertEquals(1, underTest.get5HourDisplayState());
     }
 
 }
