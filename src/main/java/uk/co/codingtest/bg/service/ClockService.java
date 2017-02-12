@@ -30,6 +30,7 @@ public class ClockService {
         clockDisplay.set5HourDisplay(displayEngine.get5HourDisplay(hh24));
         clockDisplay.set1HourDisplay(displayEngine.get1HourDisplay(hh24));
         clockDisplay.set5MinuteDisplay(displayEngine.get5MinuteDisplay(mi));
+        clockDisplay.set1MinuteDisplay(displayEngine.get1MinuteDisplay(mi));
         return clockDisplay;
     }
 

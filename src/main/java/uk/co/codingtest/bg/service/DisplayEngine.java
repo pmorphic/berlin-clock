@@ -23,4 +23,8 @@ public class DisplayEngine {
     public FiveMinuteDisplay get5MinuteDisplay(int mi) {
         return FiveMinuteDisplay.fromDisplayState(mi / 5);
     }
+
+    public OneTimeUnitDisplay get1MinuteDisplay(int mi) {
+        return OneTimeUnitDisplay.fromDisplayState(mi % 5);
+    }
 }

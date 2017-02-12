@@ -33,12 +33,14 @@ public class ClockServiceTest {
         when(displayEngine.get5HourDisplay(11)).thenReturn(FiveHourDisplay.TEN);
         when(displayEngine.get1HourDisplay(11)).thenReturn(OneTimeUnitDisplay.ONE);
         when(displayEngine.get5MinuteDisplay(12)).thenReturn(FiveMinuteDisplay.TEN);
+        when(displayEngine.get1MinuteDisplay(12)).thenReturn(OneTimeUnitDisplay.TWO);
 
         ClockDisplay actual = underTest.getDisplay("11:12:10");
         assertEquals(SecondsDisplay.ON.getDisplayState(), actual.getSecondsDisplayState());
         assertEquals(FiveHourDisplay.TEN.getDisplayState(), actual.get5HourDisplayState());
         assertEquals(OneTimeUnitDisplay.ONE.getDisplayState(), actual.get1HourDisplayState());
         assertEquals(FiveMinuteDisplay.TEN.getDisplayState(), actual.get5MinuteDisplayState());
+        assertEquals(OneTimeUnitDisplay.TWO.getDisplayState(), actual.get1MinuteDisplayState());
     }
 
     @Test (expected = InvalidParameterException.class)

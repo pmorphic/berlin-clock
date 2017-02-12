@@ -58,4 +58,13 @@ public class DisplayEngineTest {
         assertEquals(FiveMinuteDisplay.FORTY, underTest.get5MinuteDisplay(41));
         assertEquals(FiveMinuteDisplay.FIFTY_FIVE, underTest.get5MinuteDisplay(55));
     }
+
+    @Test
+    public void itShouldReturnNumberOf1MinuteBlocksToBeIlluminated() {
+        assertEquals(OneTimeUnitDisplay.ZERO, underTest.get1MinuteDisplay(5));
+        assertEquals(OneTimeUnitDisplay.ONE, underTest.get1MinuteDisplay(11));
+        assertEquals(OneTimeUnitDisplay.TWO, underTest.get1MinuteDisplay(2));
+        assertEquals(OneTimeUnitDisplay.THREE, underTest.get1MinuteDisplay(23));
+        assertEquals(OneTimeUnitDisplay.FOUR, underTest.get1MinuteDisplay(14));
+    }
 }
