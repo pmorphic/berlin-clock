@@ -62,3 +62,9 @@ Feature: Checks if the current time is represented similar to The Berlin Clock.
     And the returned data must match:
       | secondsDisplayState | 5HourDisplayState | 1HourDisplayState | 5MinuteDisplayState | 1MinuteDisplayState |
       | 1                   | 2                 | 1                 | 4                   | 4                   |
+
+  @wip
+  Scenario: Current time must be returned to match Berlin clock display
+    When I make a request to get time display
+    Then the system must return "200" status code
+#    And the returned data must be for the current system time

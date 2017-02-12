@@ -7,6 +7,7 @@ import uk.co.codingtest.bg.bean.ClockDisplay;
 import uk.co.codingtest.bg.exception.InvalidParameterException;
 import uk.co.codingtest.bg.service.ClockService;
 
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,8 +22,14 @@ public class ClockController {
     }
 
     @RequestMapping(value = "/display-time")
-    public ClockDisplay displayTime(@RequestParam("time")  String time) throws InvalidParameterException {
+    public ClockDisplay displayTime(@RequestParam(value = "time", required = false)  String param) throws InvalidParameterException {
+        String time = (param != null) ? param : getCurrentTime();
         return clockService.getDisplay(time);
+    }
+
+    private String getCurrentTime() {
+        SimpleDateFormat time_formatter = new SimpleDateFormat("HH:mm:ss");
+        return time_formatter.format(System.currentTimeMillis());
     }
 
 }

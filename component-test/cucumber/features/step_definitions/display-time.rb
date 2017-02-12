@@ -7,13 +7,16 @@ Given /^I initialize the current time to be "([^"]*)" hrs$/ do |time|
 end
 
 When /^I make a request to get time display$/ do
+  param = {}
+  param = {params: {time: @current_time}} unless @current_time.nil?
   url = "#{BASE_URL}/display-time"
+
   begin
-    @response = RestClient.get url, {params: {time: @current_time}}
+    @response = RestClient.get url, param
   rescue RestClient::ExceptionWithResponse => e
-    puts e.response
     @response = e.response
   end
+
 end
 
 Then /^the returned data must match:$/ do |table|
@@ -30,4 +33,13 @@ end
 
 Then /^the system must return "([^"]*)" status code$/ do |status_code|
   expect(@response.code).to eq(status_code.to_i)
+end
+
+Then /^the returned data must be for the current system time$/ do
+    end_time = Time.now
+    response_body = JSON.parse(@response.body)
+    rtrn_hour = response_body["5HourDisplayState"] * 5 + response_body["1HourDisplayState"]
+    rtrn_min = response_body["5HourDisplayState"] * 5 + response_body["1HourDisplayState"]
+
+    expect(rtrn_hour).to be_between(@start_time.hour, end_time.hour).inclusive
 end
