@@ -10,6 +10,7 @@ public class ClockDisplay {
     private FiveHourDisplay fiveHourDisplay = FiveHourDisplay.ZERO;
     private OneTimeUnitDisplay oneHourDisplay = OneTimeUnitDisplay.ZERO;
     private FiveMinuteDisplay fiveMinuteDisplay = FiveMinuteDisplay.ZERO;
+    private OneTimeUnitDisplay oneMinuteDisplay = OneTimeUnitDisplay.ZERO;
 
     public int getSecondsDisplayState() {
         return secondsDisplay.getDisplayState();
@@ -44,7 +45,11 @@ public class ClockDisplay {
     }
 
     public int get1MinuteDisplayState() {
-        return 0;
+        return oneMinuteDisplay.getDisplayState();
+    }
+
+    public void set1MinuteDisplay(OneTimeUnitDisplay oneMinuteDisplay) {
+        this.oneMinuteDisplay = oneMinuteDisplay;
     }
 
 }

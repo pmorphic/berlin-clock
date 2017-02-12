@@ -39,7 +39,6 @@ Feature: Checks if the current time is represented similar to The Berlin Clock.
       | secondsDisplayState | 5HourDisplayState | 1HourDisplayState | 5MinuteDisplayState | 1MinuteDisplayState |
       | 0                   | 0                 | 2                 | 0                   | 0                   |
 
-  @wip
   Scenario: 5 Minute display state must be correctly set
     Given I initialize the current time to be "00:20:01" hrs
     When I make a request to get time display
@@ -47,3 +46,12 @@ Feature: Checks if the current time is represented similar to The Berlin Clock.
     And the returned data must match:
       | secondsDisplayState | 5HourDisplayState | 1HourDisplayState | 5MinuteDisplayState | 1MinuteDisplayState |
       | 0                   | 0                 | 0                 | 4                   | 0                   |
+
+  @wip
+  Scenario: 1 Minute display state must be correctly set
+    Given I initialize the current time to be "00:04:01" hrs
+    When I make a request to get time display
+    Then the system must return "200" status code
+    And the returned data must match:
+      | secondsDisplayState | 5HourDisplayState | 1HourDisplayState | 5MinuteDisplayState | 1MinuteDisplayState |
+      | 0                   | 0                 | 0                 | 0                   | 4                   |
