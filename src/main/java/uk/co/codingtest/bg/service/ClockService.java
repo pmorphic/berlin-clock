@@ -28,6 +28,7 @@ public class ClockService {
         ClockDisplay clockDisplay = new ClockDisplay();
         clockDisplay.setSecondsDisplay(displayEngine.getSecondsDisplay(ss));
         clockDisplay.set5HourDisplay(displayEngine.get5HourDisplay(hh24));
+        clockDisplay.set1HourDisplay(displayEngine.get1HourDisplay(hh24));
         return clockDisplay;
     }
 

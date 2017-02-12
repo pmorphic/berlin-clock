@@ -31,7 +31,6 @@ Feature: Checks if the current time is represented similar to The Berlin Clock.
       | secondsDisplayState | 5HourDisplayState | 1HourDisplayState | 5MinuteDisplayState | 1MinuteDisplayState |
       | 0                   | 2                 | 0                 | 0                   | 0                   |
 
-  @wip
   Scenario: 1 Hour display state must be correctly set
     Given I initialize the current time to be "02:00:01" hrs
     When I make a request to get time display

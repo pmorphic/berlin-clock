@@ -2,6 +2,7 @@ package uk.co.codingtest.bg.service;
 
 import org.springframework.stereotype.Service;
 import uk.co.codingtest.bg.enums.FiveHourDisplay;
+import uk.co.codingtest.bg.enums.OneTimeUnitDisplay;
 import uk.co.codingtest.bg.enums.SecondsDisplay;
 
 @Service
@@ -14,4 +15,7 @@ public class DisplayEngine {
         return FiveHourDisplay.fromDisplayState(hh24/5);
     }
 
+    public OneTimeUnitDisplay get1HourDisplay(int hh24) {
+        return OneTimeUnitDisplay.fromDisplayState(hh24 % 5);
+    }
 }

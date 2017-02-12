@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import uk.co.codingtest.bg.bean.ClockDisplay;
 import uk.co.codingtest.bg.enums.FiveHourDisplay;
+import uk.co.codingtest.bg.enums.OneTimeUnitDisplay;
 import uk.co.codingtest.bg.enums.SecondsDisplay;
 import uk.co.codingtest.bg.exception.InvalidParameterException;
 
@@ -29,10 +30,12 @@ public class ClockServiceTest {
     public void itShouldReturnClockDisplayForValidTimeInput() throws InvalidParameterException {
         when(displayEngine.getSecondsDisplay(10)).thenReturn(SecondsDisplay.ON);
         when(displayEngine.get5HourDisplay(11)).thenReturn(FiveHourDisplay.TEN);
+        when(displayEngine.get1HourDisplay(11)).thenReturn(OneTimeUnitDisplay.ONE);
 
         ClockDisplay actual = underTest.getDisplay("11:11:10");
         assertEquals(SecondsDisplay.ON.getDisplayState(), actual.getSecondsDisplayState());
         assertEquals(FiveHourDisplay.TEN.getDisplayState(), actual.get5HourDisplayState());
+        assertEquals(OneTimeUnitDisplay.ONE.getDisplayState(), actual.get1HourDisplayState());
     }
 
     @Test (expected = InvalidParameterException.class)
