@@ -14,9 +14,7 @@ It returns a JSON output in the following format:
     "1MinuteDisplayState":4
 }
 ```
-Each property in the Json object represents a row in the Berlin Clock.
-Value 0 for a property signifies no lights are illuminated for the specified row in the clock..
-Value 1 or more for a property signifies the number of lights to be illuminated for the specified row in the clock.
+The properties in the Json object represent rows in the Berlin Clock and the values represent the number of lights to be illuminated for the specific row.
 
 ## Getting Started
 
