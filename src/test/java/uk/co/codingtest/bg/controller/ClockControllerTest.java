@@ -8,15 +8,12 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import uk.co.codingtest.bg.bean.ClockDisplay;
-import uk.co.codingtest.bg.exception.InvalidParameterException;
 import uk.co.codingtest.bg.service.ClockService;
 
 import java.util.Calendar;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)

@@ -8,8 +8,6 @@ import uk.co.codingtest.bg.exception.InvalidParameterException;
 import uk.co.codingtest.bg.service.ClockService;
 
 import java.text.SimpleDateFormat;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @RestController
 public class ClockController {

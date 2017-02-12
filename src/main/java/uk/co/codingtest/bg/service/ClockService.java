@@ -25,6 +25,7 @@ public class ClockService {
         int mi = validateAndToInt(stringSplit[1], 59);
         int ss = validateAndToInt(stringSplit[2], 59);
 
+//        Could use builder pattern
         ClockDisplay clockDisplay = new ClockDisplay();
         clockDisplay.setSecondsDisplay(displayEngine.getSecondsDisplay(ss));
         clockDisplay.set5HourDisplay(displayEngine.get5HourDisplay(hh24));

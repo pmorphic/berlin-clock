@@ -13,7 +13,7 @@ public class DisplayEngine {
     }
 
     public FiveHourDisplay get5HourDisplay(int hh24) {
-        return FiveHourDisplay.fromDisplayState(hh24/5);
+        return FiveHourDisplay.fromDisplayState(hh24 / 5);
     }
 
     public OneTimeUnitDisplay get1HourDisplay(int hh24) {
