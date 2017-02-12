@@ -3,6 +3,7 @@ require 'rspec'
 require 'json'
 
 When(/^I make a request to get display state for "([^"]*)"$/) do |time|
+  @start_time = Time.now
   param = {}
   param = {params: {time: time}} unless time.eql?('<blank>')
   url = "#{BASE_URL}/display-time"
@@ -32,7 +33,10 @@ Then /^the returned data must be for the current system time$/ do
     end_time = Time.now
     response_body = JSON.parse(@response.body)
     rtrn_hour = response_body["5HourDisplayState"] * 5 + response_body["1HourDisplayState"]
-    rtrn_min = response_body["5HourDisplayState"] * 5 + response_body["1HourDisplayState"]
+    rtrn_min = response_body["5MinuteDisplayState"] * 5 + response_body["1MinuteDisplayState"]
 
-    expect(rtrn_hour).to be_between(@start_time.hour, end_time.hour).inclusive
+# Check if the returned hour and minutes match either the start or end time of test
+# This is to allow for boundary cases where the hour/min might transition during the test.
+    expect(rtrn_hour == @start_time.hour || rtrn_hour == end_time.hour).to be true
+    expect(rtrn_min == @start_time.min || rtrn_min == end_time.min).to be true
 end
