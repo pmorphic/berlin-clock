@@ -1,6 +1,7 @@
 package uk.co.codingtest.bg.bean;
 
 import uk.co.codingtest.bg.enums.FiveHourDisplay;
+import uk.co.codingtest.bg.enums.FiveMinuteDisplay;
 import uk.co.codingtest.bg.enums.OneTimeUnitDisplay;
 import uk.co.codingtest.bg.enums.SecondsDisplay;
 
@@ -8,6 +9,7 @@ public class ClockDisplay {
     private SecondsDisplay secondsDisplay = SecondsDisplay.OFF;
     private FiveHourDisplay fiveHourDisplay = FiveHourDisplay.ZERO;
     private OneTimeUnitDisplay oneHourDisplay = OneTimeUnitDisplay.ZERO;
+    private FiveMinuteDisplay fiveMinuteDisplay = FiveMinuteDisplay.ZERO;
 
     public int getSecondsDisplayState() {
         return secondsDisplay.getDisplayState();
@@ -34,7 +36,11 @@ public class ClockDisplay {
     }
 
     public int get5MinuteDisplayState() {
-        return 0;
+        return fiveMinuteDisplay.getDisplayState();
+    }
+
+    public void set5MinuteDisplay(FiveMinuteDisplay fiveMinuteDisplay) {
+        this.fiveMinuteDisplay = fiveMinuteDisplay;
     }
 
     public int get1MinuteDisplayState() {
