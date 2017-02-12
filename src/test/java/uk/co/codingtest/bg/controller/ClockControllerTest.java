@@ -11,9 +11,9 @@ import uk.co.codingtest.bg.bean.ClockDisplay;
 import uk.co.codingtest.bg.exception.InvalidParameterException;
 import uk.co.codingtest.bg.service.ClockService;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import java.util.Calendar;
+
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
@@ -44,12 +44,20 @@ public class ClockControllerTest {
     }
 
     @Test
-//    TODO: Replace assertNotNull with argument value check
     public void itShouldUseCurrentTimeIfRequestParamEmpty() throws Exception {
+        Calendar startTime = Calendar.getInstance();
+
         underTest.displayTime(null);
 
         verify(clockService).getDisplay(argumentCaptor.capture());
-        assertNotNull(argumentCaptor.getValue());
+
+        Calendar endTime = Calendar.getInstance();
+        String[] timeParts = argumentCaptor.getValue().split(":");
+        Integer actualHour = Integer.valueOf(timeParts[0]);
+        Integer actualMin = Integer.valueOf(timeParts[1]);
+
+        assertTrue(actualHour.equals(startTime.get(Calendar.HOUR_OF_DAY)) || actualHour.equals(endTime.get(Calendar.HOUR_OF_DAY)));
+        assertTrue(actualMin.equals(startTime.get(Calendar.MINUTE)) || actualMin.equals(endTime.get(Calendar.MINUTE)));
     }
 
 }
