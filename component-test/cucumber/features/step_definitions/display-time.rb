@@ -2,13 +2,9 @@ require 'rest-client'
 require 'rspec'
 require 'json'
 
-Given /^I initialize the current time to be "([^"]*)" hrs$/ do |time|
-  @current_time = time
-end
-
-When /^I make a request to get time display$/ do
+When(/^I make a request to get display state for "([^"]*)"$/) do |time|
   param = {}
-  param = {params: {time: @current_time}} unless @current_time.nil?
+  param = {params: {time: time}} unless time.eql?('<blank>')
   url = "#{BASE_URL}/display-time"
 
   begin
@@ -16,19 +12,16 @@ When /^I make a request to get time display$/ do
   rescue RestClient::ExceptionWithResponse => e
     @response = e.response
   end
-
 end
 
-Then /^the returned data must match:$/ do |table|
+Then(/^the system must return "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)", "([^"]*)"$/) do |sec, five_hour, one_hour, five_min, one_min|
   response_body = JSON.parse(@response.body)
 
-  table.hashes.each do |row|
-    expect(response_body["secondsDisplayState"]).to eq(row["secondsDisplayState"].to_i)
-    expect(response_body["5HourDisplayState"]).to eq(row["5HourDisplayState"].to_i)
-    expect(response_body["1HourDisplayState"]).to eq(row["1HourDisplayState"].to_i)
-    expect(response_body["5MinuteDisplayState"]).to eq(row["5MinuteDisplayState"].to_i)
-    expect(response_body["1MinuteDisplayState"]).to eq(row["1MinuteDisplayState"].to_i)
-  end
+  expect(response_body["secondsDisplayState"]).to eq(sec.to_i)
+  expect(response_body["5HourDisplayState"]).to eq(five_hour.to_i)
+  expect(response_body["1HourDisplayState"]).to eq(one_hour.to_i)
+  expect(response_body["5MinuteDisplayState"]).to eq(five_min.to_i)
+  expect(response_body["1MinuteDisplayState"]).to eq(one_min.to_i)
 end
 
 Then /^the system must return "([^"]*)" status code$/ do |status_code|
