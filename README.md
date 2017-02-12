@@ -4,6 +4,9 @@ This project has a REST API endpoint that returns the Berlin Clock display as a 
 
 The REST endpoint can be accessed using URL **/display-time** and takes a time parameter in HH24:MI:SS format.
 
+### Sample request
+curl http://localhost:8080/display-time?time='20:10:05'
+
 It returns a JSON output in the following format:
 ```json
 {
