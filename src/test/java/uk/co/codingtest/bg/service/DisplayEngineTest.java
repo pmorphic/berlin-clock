@@ -3,6 +3,7 @@ package uk.co.codingtest.bg.service;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.codingtest.bg.enums.FiveHourDisplay;
+import uk.co.codingtest.bg.enums.FiveMinuteDisplay;
 import uk.co.codingtest.bg.enums.OneTimeUnitDisplay;
 import uk.co.codingtest.bg.enums.SecondsDisplay;
 
@@ -48,5 +49,13 @@ public class DisplayEngineTest {
         assertEquals(OneTimeUnitDisplay.TWO, underTest.get1HourDisplay(2));
         assertEquals(OneTimeUnitDisplay.THREE, underTest.get1HourDisplay(23));
         assertEquals(OneTimeUnitDisplay.FOUR, underTest.get1HourDisplay(14));
+    }
+
+    @Test
+    public void itShouldReturnNumberOf5MinuteBlocksToBeIlluminated() {
+        assertEquals(FiveMinuteDisplay.ZERO, underTest.get5MinuteDisplay(3));
+        assertEquals(FiveMinuteDisplay.FIVE, underTest.get5MinuteDisplay(6));
+        assertEquals(FiveMinuteDisplay.FORTY, underTest.get5MinuteDisplay(41));
+        assertEquals(FiveMinuteDisplay.FIFTY_FIVE, underTest.get5MinuteDisplay(55));
     }
 }
