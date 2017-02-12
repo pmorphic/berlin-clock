@@ -7,6 +7,7 @@ The REST endpoint can be accessed using URL **/display-time** and takes a time p
 ### Sample request
 curl http://localhost:8080/display-time?time='20:10:05'
 
+### Output
 It returns a JSON output in the following format:
 ```json
 {
